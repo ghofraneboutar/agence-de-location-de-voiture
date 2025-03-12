@@ -34,11 +34,19 @@ public class ImpIDaoClient implements IDaoClient {
 
     @Override
     public void supprimerClient(int id) {
+        try {
+            PreparedStatement query = cnx.prepareStatement("delete from client where code_client=?");
+            query.setInt(1, id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
     @Override
     public void modifierClient(Client client) {
+        
 
     }
 
