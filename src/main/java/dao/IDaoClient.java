@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface IDaoClient {
     void ajouterClient(Client client);
 
-    void supprimerClient(int id);
+    void supprimerClient(String id);
 
     void modifierClient(Client client);
 

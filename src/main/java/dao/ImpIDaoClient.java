@@ -34,10 +34,10 @@ public class ImpIDaoClient implements IDaoClient {
     }
 
     @Override
-    public void supprimerClient(int id) {
+    public void supprimerClient(String id) {
         try {
-            PreparedStatement query = cnx.prepareStatement("delete from client where code_client=?");
-            query.setInt(1, id);
+            PreparedStatement query = cnx.prepareStatement("delete from client where num_cin=?");
+            query.setString(1, id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +48,7 @@ public class ImpIDaoClient implements IDaoClient {
     @Override
     public void modifierClient(Client client) {
         try {
-            PreparedStatement query = cnx.prepareStatement("update client set num_cin=?,nom=?, prenom=?,age=?,adresse=?,num_permis=?,email=? tel=? where code_client=?");
+            PreparedStatement query = cnx.prepareStatement("update client set num_cin=?,nom=?, prenom=?,age=?,adresse=?,num_permis=?,email=? tel=? where num_cin=?");
             query.setString(1, client.getNum_cin());
             query.setString(2, client.getNom());
             query.setString(3, client.getPrenom());
@@ -57,7 +57,7 @@ public class ImpIDaoClient implements IDaoClient {
             query.setString(6, client.getNum_permis());
             query.setString(7, client.getEmail());
             query.setString(8, client.getTel());
-            query.setInt(9, client.getCode_client());
+            query.setString(9, client.getNum_cin());
             query.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
