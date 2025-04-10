@@ -25,6 +25,9 @@ public class ModelClient {
     public void delete() {
         this.daoClient.supprimerClient(client.getCode_client());
     }
+    public Client getClient(int id) {
+        return daoClient.getClient(id);
+    }
 
     public void update() {
         this.daoClient.modifierClient(client);
@@ -38,11 +41,7 @@ public class ModelClient {
         this.client = client;
     }
 
-    public IDaoClient getDaoClient() {
-        return daoClient;
-    }
 
-    public void setDaoClient(IDaoClient daoClient) {
-        this.daoClient = daoClient;
-    }
+
+
 }

@@ -17,6 +17,10 @@ public class Parc {
         this.voitures = new ArrayList<>();
     }
 
+    public Parc() {
+
+    }
+
     public int getNum_parc() {
         return num_parc;
     }

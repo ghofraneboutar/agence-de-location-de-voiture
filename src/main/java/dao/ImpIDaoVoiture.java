@@ -17,10 +17,10 @@ public class ImpIDaoVoiture implements IDaoVoiture {
         try {
             PreparedStatement query = cnx.prepareStatement("insert into voiture values(null,?,?,?,?,?)");
             query.setString(1, voiture.getMatricule());
-            query.setString(2,voiture.getModele());
+            query.setString(2, voiture.getModele());
             query.setString(3, voiture.getMarque());
-            query.setFloat(4,voiture.getKilometrage());
-            query.setInt(5,voiture.getParc().getNum_parc());
+            query.setFloat(4, voiture.getKilometrage());
+            query.setInt(5, voiture.getParc().getNum_parc());
             query.executeUpdate();
 
         } catch (SQLException e) {
@@ -32,12 +32,12 @@ public class ImpIDaoVoiture implements IDaoVoiture {
 
     @Override
     public void supprimerVoiture(int id) {
-        try{
-            PreparedStatement query= cnx.prepareStatement("delete from voiture where id=?");
+        try {
+            PreparedStatement query = cnx.prepareStatement("delete from voiture where code_voiture=?");
             query.setInt(1, id);
             query.executeUpdate();
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -46,14 +46,14 @@ public class ImpIDaoVoiture implements IDaoVoiture {
     @Override
     public ArrayList<Voiture> getVoitures() {
         ArrayList<Voiture> voitures = new ArrayList<>();
-        try{
-            PreparedStatement query=cnx.prepareStatement("select * from voiture");
-            ResultSet rs=query.executeQuery();
-            while(rs.next()){
+        try {
+            PreparedStatement query = cnx.prepareStatement("select * from voiture");
+            ResultSet rs = query.executeQuery();
+            while (rs.next()) {
 
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return voitures;
@@ -61,7 +61,23 @@ public class ImpIDaoVoiture implements IDaoVoiture {
 
     @Override
     public Voiture getVoiture(int id) {
-        return null;
+        Voiture voiture = null;
+        try {
+            PreparedStatement query = cnx.prepareStatement("select * from voiture where code_voiture=?");
+            query.setInt(1, id);
+            ResultSet rs = query.executeQuery();
+            while (rs.next()) {
+                voiture = new Voiture();
+                voiture.setCode_voiture(rs.getInt("code_voiture"));
+                voiture.setModele(rs.getString("modele"));
+                voiture.setMarque(rs.getString("marque"));
+                voiture.setKilometrage(rs.getFloat("kilometrage"));
+                voiture.setMatricule(rs.getString("matricule"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return voiture;
     }
 
     @Override

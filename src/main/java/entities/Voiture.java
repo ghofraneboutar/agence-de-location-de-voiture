@@ -17,6 +17,10 @@ public class Voiture {
         this.parc = parc;
     }
 
+    public Voiture() {
+
+    }
+
     public int getCode_voiture() {
         return code_voiture;
     }

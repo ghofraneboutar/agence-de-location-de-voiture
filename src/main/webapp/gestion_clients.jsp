@@ -60,7 +60,10 @@
         </thead>
         <tbody>
         <%
-            for (Client c : clients) {
+            if (clients != null) {
+
+
+                for (Client c : clients) {
         %>
         <tr>
             <td><%= c.getCode_client() %>
@@ -83,7 +86,8 @@
                 </a>
             </td>
         </tr>
-        <% } %>
+        <% }
+        } %>
         </tbody>
     </table>
 </div>

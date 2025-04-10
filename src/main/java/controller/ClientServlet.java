@@ -56,7 +56,7 @@ public class ClientServlet extends HttpServlet {
 
             case "/client/updating":
                 int id_update = Integer.parseInt(request.getParameter("id"));
-                Client client_to_update = modelClient.getDaoClient().getClient(id_update);
+                Client client_to_update = modelClient.getClient(id_update);
                 request.setAttribute("client_to_update", client_to_update);
                 request.getRequestDispatcher("/form_update_client.jsp").forward(request, response);
                 break;
