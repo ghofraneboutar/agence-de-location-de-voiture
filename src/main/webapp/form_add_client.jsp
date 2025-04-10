@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1>Ajouter Client</h1>
+    <h1>Ajouter client</h1>
     <form action="/client/save" method="post">
 
         <div class="form-floating mb-4">

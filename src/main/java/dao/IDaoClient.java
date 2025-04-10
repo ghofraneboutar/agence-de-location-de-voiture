@@ -14,5 +14,7 @@ public interface IDaoClient {
     Client getClient(int id);
 
     ArrayList<Client> getClients();
+    Client rechercheByNumCIN(String numCIN);
+    Client rechercheByNom(String nom);
 
 }

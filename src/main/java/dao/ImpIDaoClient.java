@@ -75,15 +75,7 @@ public class ImpIDaoClient implements IDaoClient {
             query.setInt(1, id);
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
-                return new Client(rs.getInt("code_client"),
-                        rs.getString("num_cin"),
-                        rs.getString("num_permis"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getInt("age"),
-                        rs.getString("adresse"),
-                        rs.getString("tel"),
-                        rs.getString("email"));
+                return new Client(rs.getInt("code_client"), rs.getString("num_cin"), rs.getString("num_permis"), rs.getString("nom"), rs.getString("prenom"), rs.getInt("age"), rs.getString("adresse"), rs.getString("tel"), rs.getString("email"));
             } else {
                 return null;
             }
@@ -103,19 +95,65 @@ public class ImpIDaoClient implements IDaoClient {
             PreparedStatement query = cnx.prepareStatement("select * from client");
             ResultSet rs = query.executeQuery();
             while (rs.next()) {
-                clients.add(new Client(rs.getInt("code_client"),
-                        rs.getString("num_cin"),
-                        rs.getString("num_permis"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getInt("age"),
-                        rs.getString("adresse"),
-                        rs.getString("tel"),
-                        rs.getString("email")));
+                clients.add(new Client(rs.getInt("code_client"), rs.getString("num_cin"), rs.getString("num_permis"), rs.getString("nom"), rs.getString("prenom"), rs.getInt("age"), rs.getString("adresse"), rs.getString("tel"), rs.getString("email")));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return clients;
     }
+
+    @Override
+    public Client rechercheByNumCIN(String numCIN) {
+        Client client = new Client();
+        try {
+            PreparedStatement query = cnx.prepareStatement("select * from client where num_cin=?");
+            query.setString(1, numCIN);
+            ResultSet rs = query.executeQuery();
+            if (rs.next()) {
+
+                client.setNum_cin(rs.getString("num_cin"));
+                client.setNom(rs.getString("nom"));
+                client.setPrenom(rs.getString("prenom"));
+                client.setAge(rs.getInt("age"));
+                client.setAdresse(rs.getString("adresse"));
+                client.setNum_permis(rs.getString("num_permis"));
+                client.setEmail(rs.getString("email"));
+                client.setTel(rs.getString("tel"));
+                client.setCode_client(rs.getInt("code_client"));
+
+            }
+            return client;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Client rechercheByNom(String nom) {
+        Client client = new Client();
+        try {
+            PreparedStatement query = cnx.prepareStatement("select * from client where nom=?");
+            query.setString(1, nom);
+            ResultSet rs = query.executeQuery();
+            if (rs.next()) {
+                client.setNum_cin(rs.getString("num_cin"));
+                client.setNom(rs.getString("nom"));
+                client.setPrenom(rs.getString("prenom"));
+                client.setAge(rs.getInt("age"));
+                client.setAdresse(rs.getString("adresse"));
+                client.setNum_permis(rs.getString("num_permis"));
+                client.setEmail(rs.getString("email"));
+                client.setTel(rs.getString("tel"));
+                client.setCode_client(rs.getInt("code_client"));
+
+            }
+            return client;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
