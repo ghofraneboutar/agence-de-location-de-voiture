@@ -18,7 +18,7 @@
     Client client = (Client) request.getAttribute("client_to_update");
 %>
 <div class="container mt-5">
-    <h1>Ajouter Client</h1>
+    <h1>Modifier Client</h1>
     <form action="/client/update?id=<%=client.getCode_client()%>" method="post">
 
         <div class="form-floating mb-4">
