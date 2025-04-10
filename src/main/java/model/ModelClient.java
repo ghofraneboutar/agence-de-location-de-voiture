@@ -4,6 +4,8 @@ import dao.IDaoClient;
 import dao.ImpIDaoClient;
 import entities.Client;
 
+import java.util.ArrayList;
+
 public class ModelClient {
     private Client client;
     private IDaoClient daoClient;
@@ -12,13 +14,16 @@ public class ModelClient {
         this.daoClient = new ImpIDaoClient();
 
     }
+    public ArrayList<Client> getClients() {
+        return daoClient.getClients();
+    }
 
     public void add() {
         this.daoClient.ajouterClient(client);
     }
 
     public void delete() {
-        this.daoClient.supprimerClient(client.getNum_cin());
+        this.daoClient.supprimerClient(client.getCode_client());
     }
 
     public void update() {
