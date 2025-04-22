@@ -75,7 +75,15 @@ public class ImpIDaoClient implements IDaoClient {
             query.setInt(1, id);
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
-                return new Client(rs.getInt("code_client"), rs.getString("num_cin"), rs.getString("num_permis"), rs.getString("nom"), rs.getString("prenom"), rs.getInt("age"), rs.getString("adresse"), rs.getString("tel"), rs.getString("email"));
+                return new Client(rs.getInt("code_client"),
+                        rs.getString("num_cin"),
+                        rs.getString("num_permis"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getInt("age"),
+                        rs.getString("adresse"),
+                        rs.getString("tel"),
+                        rs.getString("email"));
             } else {
                 return null;
             }

@@ -30,7 +30,7 @@ public class ImpIDaoParc implements IDaoParc {
     @Override
     public void supprimerParc(int code) {
         try {
-            PreparedStatement query = this.cnx.prepareStatement("delete from parc where code_Parc=?");
+            PreparedStatement query = this.cnx.prepareStatement("delete from parc where num_Parc=?");
             query.setInt(1, code);
             query.executeUpdate();
 
@@ -42,7 +42,7 @@ public class ImpIDaoParc implements IDaoParc {
     @Override
     public void modifierParc(Parc parc) {
         try {
-            PreparedStatement query = this.cnx.prepareStatement("update parc set libelle=?,capacite=?,localisation=? where code_parc=?");
+            PreparedStatement query = this.cnx.prepareStatement("update parc set libelle=?,capacite=?,localisation=? where num_parc=?");
             query.setString(1, parc.getLibelle());
             query.setInt(2, parc.getCapacite());
             query.setString(3, parc.getLocalisation());
@@ -57,23 +57,18 @@ public class ImpIDaoParc implements IDaoParc {
 
     @Override
     public Parc getParc(int id) {
-        Parc parc = null;
         try {
-            PreparedStatement query = this.cnx.prepareStatement("select * from parc where code_parc=?");
+            PreparedStatement query = cnx.prepareStatement("select * from parc where num_parc=?");
             query.setInt(1, id);
             ResultSet rs = query.executeQuery();
             if (rs.next()) {
-                parc.setLibelle(rs.getString("libelle"));
-                parc.setCapacite(rs.getInt("capacite"));
-                parc.setLocalisation(rs.getString("localisation"));
-                parc.setNum_parc(rs.getInt("num_parc"));
-
+                return new Parc(rs.getInt("num_parc"),rs.getString("libelle"),rs.getInt("capacite"),rs.getString("localisation"));
+            } else {
+                return null;
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return parc;
     }
 
     @Override

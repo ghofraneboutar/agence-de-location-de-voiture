@@ -14,7 +14,7 @@
 <div class="container mt-3">
     <h1><%= "Bienvenue sur notre site" %></h1>
     <br/>
-    <a href="client">Gestion client</a>
+    <a href="client">Gestion clients</a> <a href="parc">Gestion parcs</a>
 </div>
 
 </body>

@@ -1,9 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="java.util.List" %>
-<%@ page import="entities.Client" %>
+<%@ page import="entities.Parc" %>
+<%@ page import="java.util.List" %><%--
+  Created by IntelliJ IDEA.
+  User: moham
+  Date: 4/22/2025
+  Time: 10:24 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Gestion Clients</title>
+    <title>Gestion Parcs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -14,7 +20,7 @@
         if (request.getAttribute("deleted") != null && (boolean) request.getAttribute("deleted")) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Client supprimé avec succès !
+        Parc supprimé avec succès !
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <%
@@ -22,7 +28,7 @@
         if (request.getAttribute("updated") != null && (boolean) request.getAttribute("updated")) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Client mis à jour avec succès !
+        Parc mis à jour avec succès !
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <%
@@ -30,60 +36,59 @@
         if (request.getAttribute("added") != null && (boolean) request.getAttribute("added")) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Client ajouté avec succès !
+        Parc ajouté avec succès !
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <%
         }
     %>
 
-    <h2 class="mb-4">Liste des clients</h2>
+    <h2 class="mb-4">Liste des Parcs</h2>
 
-    <a href="/client/add" class="btn btn-success mb-3">
-        <i class="fa fa-plus"></i> Ajouter un client
+    <a href="/parc/add" class="btn btn-success mb-3">
+        <i class="fa fa-plus"></i> Ajouter un parc
     </a>
 
     <%
-        List<Client> clients = (List<Client>) request.getAttribute("clients");
+        List<Parc> parcs = (List<Parc>) request.getAttribute("parcs");
     %>
 
     <table class="table table-striped table-hover">
         <thead class="table-dark">
         <tr>
             <th>#</th>
-            <th>CIN</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Email</th>
+            <th>Libellé</th>
+            <th>Localisation</th>
+            <th>Capacité</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <%
-            if (clients != null) {
+            if (parcs != null) {
 
 
-                for (Client c : clients) {
+                for (Parc p : parcs) {
         %>
         <tr>
-            <td><%= c.getCode_client() %>
+            <td><%= p.getNum_parc() %>
             </td>
-            <td><%= c.getNum_cin() %>
+            <td><%=p.getLibelle() %>
             </td>
-            <td><%= c.getNom() %>
+            <td><%= p.getLocalisation() %>
             </td>
-            <td><%= c.getPrenom() %>
+            <td><%= p.getCapacite() %>
             </td>
-            <td><%= c.getEmail() %>
-            </td>
+
             <td>
-                <a href="/client/updating?id=<%= c.getCode_client() %>" class="btn btn-primary btn-sm">
+                <a href="/parc/updating?id=<%= p.getNum_parc() %>" class="btn btn-primary btn-sm">
                     <i class="fa fa-edit"></i> Modifier
                 </a>
-                <a href="/client/delete?id=<%= c.getCode_client() %>" class="btn btn-danger btn-sm"
-                   onclick="return confirm('Supprimer ce client : <%= c.getNum_cin() %> ?')">
+                <a href="/parc/delete?id=<%= p.getNum_parc() %>" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Supprimer ce parc : <%= p.getLibelle() %> ?')">
                     <i class="fa fa-trash"></i> Supprimer
                 </a>
+
             </td>
         </tr>
         <% }

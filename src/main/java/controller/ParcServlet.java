@@ -52,6 +52,7 @@ public class ParcServlet extends HttpServlet {
                 int id_update = Integer.parseInt(request.getParameter("id"));
                 Parc parc_to_update = modelParc.getParc(id_update);
                 request.setAttribute("parc_to_update", parc_to_update);
+                System.out.println(parc_to_update);
                 request.getRequestDispatcher("/form_update_parc.jsp").forward(request, response);
                 break;
             case "/parc/update":

@@ -35,7 +35,7 @@ public class ModelParc {
     }
 
     public void update() {
-        this.daoParc.ajouterParc(this.parc);
+        this.daoParc.modifierParc(this.parc);
     }
 
     public void delete() {
