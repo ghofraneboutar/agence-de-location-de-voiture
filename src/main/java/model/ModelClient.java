@@ -14,7 +14,7 @@ public class ModelClient {
         this.daoClient = new ImpIDaoClient();
 
     }
-    public ArrayList<Client> getClients() {
+    public ArrayList<Client> list() {
         return daoClient.getClients();
     }
 
