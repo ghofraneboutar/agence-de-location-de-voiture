@@ -1,15 +1,15 @@
-<%@ page import="entities.Parc" %>
+<%@ page import="entities.Voiture" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: moham
-  Date: 4/22/2025
-  Time: 10:24 PM
+  Date: 4/23/2025
+  Time: 9:03 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Gestion Parcs</title>
+    <title>Gestion Voitures</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -75,7 +75,7 @@
         if (request.getAttribute("deleted") != null && (boolean) request.getAttribute("deleted")) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Parc supprimé avec succès !
+        Voiture supprimée avec succès !
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <%
@@ -83,7 +83,7 @@
         if (request.getAttribute("updated") != null && (boolean) request.getAttribute("updated")) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Parc mis à jour avec succès !
+        Voiture mise à jour avec succès !
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <%
@@ -91,56 +91,62 @@
         if (request.getAttribute("added") != null && (boolean) request.getAttribute("added")) {
     %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Parc ajouté avec succès !
+        Voiture ajoutée avec succès !
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <%
         }
     %>
 
-    <h2 class="mb-4">Liste des Parcs</h2>
+    <h2 class="mb-4">Liste des Voitures</h2>
 
-    <a href="/parc/add" class="btn btn-success mb-3">
-        <i class="fa fa-plus"></i> Ajouter un parc
+    <a href="/voiture/add" class="btn btn-success mb-3">
+        <i class="fa fa-plus"></i> Ajouter une voiture
     </a>
 
     <%
-        List<Parc> parcs = (List<Parc>) request.getAttribute("parcs");
+        List<Voiture> voitures = (List<Voiture>) request.getAttribute("voitures");
     %>
 
     <table class="table table-striped table-hover">
         <thead class="table-dark">
         <tr>
             <th>#</th>
-            <th>Libellé</th>
-            <th>Localisation</th>
-            <th>Capacité</th>
+            <th>Matricule</th>
+            <th>Marque</th>
+            <th>Module</th>
+            <th>Kilométrage</th>
+            <th>Parc</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <%
-            if (parcs != null) {
+            if (voitures != null) {
 
 
-                for (Parc p : parcs) {
+                for (Voiture v : voitures) {
         %>
         <tr>
-            <td><%= p.getNum_parc() %>
+            <td><%= v.getCode_voiture() %>
             </td>
-            <td><%=p.getLibelle() %>
+            <td><%=v.getMatricule()%>
             </td>
-            <td><%= p.getLocalisation() %>
+            <td><%= v.getMarque() %>
             </td>
-            <td><%= p.getCapacite() %>
+            <td><%= v.getModele() %>
+            </td>
+            <td><%= v.getKilometrage() %>
+            </td>
+            <td><%= v.getParc().getLibelle() %>
             </td>
 
             <td>
-                <a href="/parc/updating?id=<%= p.getNum_parc() %>" class="btn btn-primary btn-sm">
+                <a href="/voiture/updating?id=<%= v.getCode_voiture() %>" class="btn btn-primary btn-sm">
                     <i class="fa fa-edit"></i> Modifier
                 </a>
-                <a href="/parc/delete?id=<%= p.getNum_parc() %>" class="btn btn-danger btn-sm"
-                   onclick="return confirm('Supprimer ce parc : <%= p.getLibelle() %> ?')">
+                <a href="/voiture/delete?id=<%= v.getCode_voiture() %>" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Supprimer ce parc : <%= v.getMatricule() %> ?')">
                     <i class="fa fa-trash"></i> Supprimer
                 </a>
 

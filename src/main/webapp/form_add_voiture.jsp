@@ -2,18 +2,19 @@
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: moham
-  Date: 4/22/2025
-  Time: 10:24 PM
+  Date: 4/23/2025
+  Time: 9:04 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Gestion Parcs</title>
+    <title>Ajout Voiture</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -70,86 +71,57 @@
         </div>
     </div>
 </nav>
+<%
+    List<Parc> parcs = (List<Parc>) request.getAttribute("parcs");
+
+%>
 <div class="container mt-5">
-    <%
-        if (request.getAttribute("deleted") != null && (boolean) request.getAttribute("deleted")) {
-    %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Parc supprimé avec succès !
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <%
-        }
-        if (request.getAttribute("updated") != null && (boolean) request.getAttribute("updated")) {
-    %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Parc mis à jour avec succès !
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <%
-        }
-        if (request.getAttribute("added") != null && (boolean) request.getAttribute("added")) {
-    %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Parc ajouté avec succès !
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <%
-        }
-    %>
+    <h1>Ajouter Voiture</h1>
+    <form action="/voiture/save" method="post">
 
-    <h2 class="mb-4">Liste des Parcs</h2>
+        <div class="form-floating mb-4">
+            <input type="text" id="matricule" class="form-control" placeholder="Entrez matricule de la voiture" name="matricule"
+                   required>
+            <label for="matricule"><i class="fa-solid fa-car"></i> Matricule</label>
+        </div>
 
-    <a href="/parc/add" class="btn btn-success mb-3">
-        <i class="fa fa-plus"></i> Ajouter un parc
-    </a>
+        <div class="form-floating mb-4">
+            <input type="text" id="marque" class="form-control" placeholder="Entrez marque de la voiture"
+                   name="marque"
+                   required>
+            <label for="marque"><i class="fa-solid fa-car"></i> Marque</label>
+        </div>
+        <div class="form-floating mb-4">
+            <input type="text" id="modele" class="form-control" placeholder="Entrez modèle de la voiture"
+                   name="modele"
+                   required>
+            <label for="modele"><i class="fa-solid fa-car"></i> Modèle</label>
+        </div>
+        <div class="form-floating mb-4">
+            <input type="number" step="0.1" id="kilometrage" class="form-control" placeholder="Entrez kilometrage de la voiture"
+                   name="kilometrage"
+                   required>
+            <label for="kilometrage"><i class="fa-solid fa-gauge"></i> Kilometrage</label>
+        </div>
+        <div class="form-floating mb-4">
+            <select name="parc" id="parc" class=" form-select" required>
+                <option value="" disabled selected class="">Sélectionnez un parc</option>
 
-    <%
-        List<Parc> parcs = (List<Parc>) request.getAttribute("parcs");
-    %>
+                <%
+                    if (parcs != null) {
+                        for (Parc p : parcs) {
+                %>
+                <option value="<%=p.getNum_parc()%>"><%=p.getLibelle()%></option>
+                <% }
+                } %>
+            </select>
+            <label for="parc"><i class="fa-solid fa-warehouse"></i> Parc</label>
+        </div>
 
-    <table class="table table-striped table-hover">
-        <thead class="table-dark">
-        <tr>
-            <th>#</th>
-            <th>Libellé</th>
-            <th>Localisation</th>
-            <th>Capacité</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <%
-            if (parcs != null) {
-
-
-                for (Parc p : parcs) {
-        %>
-        <tr>
-            <td><%= p.getNum_parc() %>
-            </td>
-            <td><%=p.getLibelle() %>
-            </td>
-            <td><%= p.getLocalisation() %>
-            </td>
-            <td><%= p.getCapacite() %>
-            </td>
-
-            <td>
-                <a href="/parc/updating?id=<%= p.getNum_parc() %>" class="btn btn-primary btn-sm">
-                    <i class="fa fa-edit"></i> Modifier
-                </a>
-                <a href="/parc/delete?id=<%= p.getNum_parc() %>" class="btn btn-danger btn-sm"
-                   onclick="return confirm('Supprimer ce parc : <%= p.getLibelle() %> ?')">
-                    <i class="fa fa-trash"></i> Supprimer
-                </a>
-
-            </td>
-        </tr>
-        <% }
-        } %>
-        </tbody>
-    </table>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <input type="submit" class="form-control btn btn-primary" value="Ajouter voiture">
+        </div>
+    </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

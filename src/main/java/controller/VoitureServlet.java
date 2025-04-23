@@ -30,9 +30,13 @@ public class VoitureServlet extends HttpServlet {
 
         switch (path) {
             case "/voiture/add":
+                List<Parc> parcs = modelParc.list();
+
+                request.setAttribute("parcs", parcs);
                 request.getRequestDispatcher("/form_add_voiture.jsp").forward(request, response);
                 break;
             case "/voiture/save":
+                System.out.println(request.getParameter("kilometrage"));
                 Voiture voiture_add = new Voiture();
                 voiture_add.setMatricule(request.getParameter("matricule"));
                 voiture_add.setModele(request.getParameter("modele"));
@@ -59,6 +63,9 @@ public class VoitureServlet extends HttpServlet {
             case "/voiture/updating":
                 int id_update = Integer.parseInt(request.getParameter("id"));
                 Voiture voiture_to_update = modelVoiture.getVoiture(id_update);
+                List<Parc> parcs_update = modelParc.list();
+
+                request.setAttribute("parcs", parcs_update);
                 request.setAttribute("voiture_to_update", voiture_to_update);
                 request.getRequestDispatcher("/form_update_voiture.jsp").forward(request, response);
                 break;

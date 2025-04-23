@@ -72,32 +72,31 @@ public class ImpIDaoVoiture implements IDaoVoiture {
 
     @Override
     public Voiture getVoiture(int id) {
-        Voiture voiture = null;
+        
         try {
             PreparedStatement query = cnx.prepareStatement("select * from voiture where code_voiture=?");
             query.setInt(1, id);
             ResultSet rs = query.executeQuery();
-            while (rs.next()) {
-                Parc parc = new Parc();
+            if (rs.next()) {
+
+                Parc parc;
                 parc = daoParc.getParc(rs.getInt("num_parc"));
-                voiture.setParc(parc);
-                voiture = new Voiture();
-                voiture.setCode_voiture(rs.getInt("code_voiture"));
-                voiture.setModele(rs.getString("modele"));
-                voiture.setMarque(rs.getString("marque"));
-                voiture.setKilometrage(rs.getFloat("kilometrage"));
-                voiture.setMatricule(rs.getString("matricule"));
+
+
+                return new Voiture(rs.getInt("code_voiture"),rs.getString("matricule"),rs.getString("marque"),rs.getString("modele"),rs.getFloat("kilometrage"),parc);
+            }else{
+                return null;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return voiture;
+
     }
 
     @Override
     public void modifierVoiture(Voiture voiture) {
         try {
-            PreparedStatement query = this.cnx.prepareStatement("update voiture set matricule=?,modele=? ,marque=?,kilomertrage=? ,num_parc=? where code_voiture=?");
+            PreparedStatement query = this.cnx.prepareStatement("update voiture set matricule=?,modele=? ,marque=?,kilometrage=? ,num_parc=? where code_voiture=?");
             query.setString(1, voiture.getMatricule());
             query.setString(2, voiture.getModele());
             query.setString(3, voiture.getMarque());
