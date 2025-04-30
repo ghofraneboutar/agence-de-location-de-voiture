@@ -49,7 +49,6 @@ public class ClientServlet extends HttpServlet {
 
             case "/client/list":
                 List<Client> clients = modelClient.list();
-
                 request.setAttribute("clients", clients);
                 request.getRequestDispatcher("/gestion_clients.jsp").forward(request, response);
                 break;
