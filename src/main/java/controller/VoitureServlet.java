@@ -189,7 +189,7 @@ public class VoitureServlet extends HttpServlet {
         request.setAttribute("date_debut", dateDebutStr);
         request.setAttribute("date_fin", dateFinStr);
 
-        request.getRequestDispatcher("/resultats-recherche.jsp").forward(request, response);
+        request.getRequestDispatcher("/accueil.jsp").forward(request, response);
     }
     private boolean estDisponible(int voitureId, Date dateDebut, Date dateFin) {
         // Exemple fictif : À remplacer par une vraie vérification dans la table des réservations

@@ -230,7 +230,7 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/client"><i class="fas fa-users me-2"></i>Gestion clients</a>
         <a class="nav-link" href="${pageContext.request.contextPath}/parc/list"><i class="fas fa-warehouse me-2"></i>Gestion parcs</a>
         <a class="nav-link" href="${pageContext.request.contextPath}/voiture/list"><i class="fas fa-car me-2"></i>Gestion voitures</a>
-        <a class="nav-link" href="${pageContext.request.contextPath}/reservation/list"><i class="fas fa-calendar-check me-2"></i>Réservations</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/location/list"><i class="fas fa-calendar-check me-2"></i>Réservations</a>
         <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt me-2"></i>Déconnexion</a>
     </nav>
 </div>

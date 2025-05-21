@@ -3,10 +3,12 @@ package entities;
 import java.util.Date;
 
 public class Location {
+    private int code_location;
     private Client client;
     private Voiture voiture;
     private Date date_debut;
     private Date date_fin;
+    private String statut;
 
     public Location(Client client, Voiture voiture, Date date_debut, Date date_fin) {
         this.client = client;
@@ -46,4 +48,15 @@ public class Location {
     public void setDate_fin(Date date_fin) {
         this.date_fin = date_fin;
     }
+
+    public void setCode_location(int anInt) {this.code_location=anInt;}
+
+    public int getCode_location() {
+        return code_location;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+    public void setStatut(String statut) {this.statut=statut;}
 }
