@@ -7,18 +7,22 @@ public class Voiture {
     private String modele;
     private float kilometrage;
     private Parc parc;
+    private String image; // Added image attribute
 
-    public Voiture(int code_voiture, String matricule, String marque, String modele, float kilometrage, Parc parc) {
+    public Voiture(int code_voiture, String matricule, String marque, String modele, float kilometrage, Parc parc, String image) {
         this.code_voiture = code_voiture;
         this.matricule = matricule;
         this.marque = marque;
         this.modele = modele;
         this.kilometrage = kilometrage;
         this.parc = parc;
+        this.image = image;
     }
 
     public Voiture() {
+    }
 
+    public Voiture(int codeVoiture, String matricule, String marque, String modele, float kilometrage, Parc parc) {
     }
 
     public int getCode_voiture() {
@@ -67,5 +71,13 @@ public class Voiture {
 
     public void setParc(Parc parc) {
         this.parc = parc;
+    }
+
+    public String getImageUrl() {
+        return image;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.image = imageUrl;
     }
 }

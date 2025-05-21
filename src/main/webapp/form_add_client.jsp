@@ -5,38 +5,15 @@
     <title>Ajout client</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        .form-card {
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-        }
-        .form-floating > label {
-            padding-left: 1.75rem;
-        }
-        .form-floating > .form-control {
-            padding-left: 2.5rem;
-        }
-        .form-icon {
-            position: absolute;
-            top: 1.15rem;
-            left: 1rem;
-            z-index: 2;
-            color: #6c757d;
-        }
-        .page-header {
-            border-bottom: 2px solid #f8f9fa;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="/">
-            Agence Location
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-car-side me-2"></i>AutoDrive
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +60,7 @@
     </div>
 </nav>
 
-<div class="container py-5">
+<div class="container py-5 fade-in">
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="d-flex justify-content-between align-items-center page-header">
@@ -96,15 +73,15 @@
                 </a>
             </div>
 
-            <div class="card border-0 form-card">
+            <div class="card">
                 <div class="card-body p-4">
-                    <form action="/client/save" method="post" class="needs-validation" novalidate>
+                    <form action="${pageContext.request.contextPath}/client/save" method="post" class="needs-validation" novalidate>
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 position-relative">
-
+                                    <i class="fa-solid fa-id-card form-icon"></i>
                                     <input type="text" id="num_cin" class="form-control" placeholder="Entrez votre CIN" name="num_cin" required>
-                                    <label for="num_cin"><i class="fa-solid fa-id-card form-icon"></i>Numéro CIN</label>
+                                    <label for="num_cin">Numéro CIN</label>
                                     <div class="invalid-feedback">
                                         Veuillez saisir un numéro CIN valide.
                                     </div>
@@ -157,9 +134,9 @@
 
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 position-relative">
-
+                                    <i class="fa-solid fa-phone form-icon"></i>
                                     <input type="tel" id="tel" class="form-control" placeholder="Entrez votre téléphone" name="tel" pattern="[0-9]{8,}" required>
-                                    <i class="fa-solid fa-phone form-icon"></i><label for="tel">Téléphone</label>
+                                    <label for="tel">Téléphone</label>
                                     <div class="invalid-feedback">
                                         Veuillez saisir un numéro de téléphone valide.
                                     </div>
@@ -190,7 +167,7 @@
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <a href="/client" class="btn btn-light me-md-2">
+                            <a href="${pageContext.request.contextPath}/client" class="btn btn-light me-md-2">
                                 <i class="fas fa-times me-2"></i>Annuler
                             </a>
                             <button type="submit" class="btn btn-primary">
@@ -204,19 +181,17 @@
     </div>
 </div>
 
-<footer class="bg-light py-4 mt-5">
+<footer class="bg-white py-4 mt-5 shadow-sm">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <p class="mb-0 text-muted">&copy; <%= new java.util.Date().getYear() + 1900 %> Agence Location. Tous droits réservés.</p>
+                <p class="mb-0 text-muted">&copy; <%= new java.util.Date().getYear() + 1900 %> AutoDrive. Tous droits réservés.</p>
             </div>
         </div>
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     // Form validation script

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -78,7 +79,7 @@
 %>
 <div class="container mt-5">
     <h1>Ajouter Voiture</h1>
-    <form action="/voiture/update?id=<%=v.getCode_voiture()%>" method="post">
+    <form action="${pageContext.request.contextPath}/voiture/update?id=<%=v.getCode_voiture()%>" method="post">
 
         <div class="form-floating mb-4">
             <input type="text" id="matricule" class="form-control" placeholder="Entrez matricule de la voiture" name="matricule"

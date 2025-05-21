@@ -7,23 +7,23 @@ import java.sql.SQLException;
 public class Connexion {
     private static Connection cnx = null;
 
-   private Connexion() {
-
+    private Connexion() {
+        // Empêche l'instanciation
     }
 
     public static Connection getConnection() {
         if (cnx == null) {
             try {
-                Class.forName("org.mariadb.jdbc.Driver");
-                String url = "jdbc:mariadb://localhost:3306/parc_jee";
+                Class.forName("com.mysql.cj.jdbc.Driver"); // ✅ MySQL Driver
+                String url = "jdbc:mysql://localhost:3306/parcjee?useSSL=false&serverTimezone=UTC";
                 String username = "root";
-                String password = "";
+                String password = ""; // Modifie si ton mot de passe MySQL n'est pas vide
                 cnx = DriverManager.getConnection(url, username, password);
-                System.out.println("✅ Database connected!");
+                System.out.println("✅ MySQL database connected!");
             } catch (ClassNotFoundException e) {
-                System.err.println("❌ Driver not found: " + e.getMessage());
+                System.err.println("❌ MySQL JDBC Driver not found: " + e.getMessage());
             } catch (SQLException e) {
-                System.err.println("❌ Connection failed: " + e.getMessage());
+                System.err.println("❌ Connection to MySQL failed: " + e.getMessage());
             }
         }
         return cnx;
@@ -34,9 +34,9 @@ public class Connexion {
             try {
                 cnx.close();
                 cnx = null;
-                System.out.println("🔴 Database connection closed.");
+                System.out.println("🔴 MySQL connection closed.");
             } catch (SQLException e) {
-                System.err.println("⚠️ Failed to close connection: " + e.getMessage());
+                System.err.println("⚠️ Failed to close MySQL connection: " + e.getMessage());
             }
         }
     }
