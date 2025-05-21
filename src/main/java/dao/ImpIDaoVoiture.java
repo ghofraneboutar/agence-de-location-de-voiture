@@ -166,11 +166,6 @@ public class ImpIDaoVoiture implements IDaoVoiture {
         return resultat;
     }
 
-    /**
-     * Recherche des voitures par modèle
-     * @param modele Le modèle à rechercher
-     * @return Liste des voitures correspondant au modèle
-     */
     public List<Voiture> rechercherParModele(String modele) {
         List<Voiture> resultat = new ArrayList<>();
         try {
@@ -198,13 +193,6 @@ public class ImpIDaoVoiture implements IDaoVoiture {
         }
         return resultat;
     }
-
-    /**
-     * Recherche des voitures disponibles pour une période donnée
-     * @param dateDebut Date de début de la période
-     * @param dateFin Date de fin de la période
-     * @return Liste des voitures disponibles pour la période
-     */
     public List<Voiture> rechercherVoituresDisponibles(Date dateDebut, Date dateFin) {
         List<Voiture> toutesVoitures = getVoitures();
         List<Voiture> voituresDisponibles = new ArrayList<>();
@@ -217,12 +205,6 @@ public class ImpIDaoVoiture implements IDaoVoiture {
 
         return voituresDisponibles;
     }
-
-    /**
-     * Recherche des voitures par parc
-     * @param parcId L'ID du parc à rechercher
-     * @return Liste des voitures appartenant au parc
-     */
     public List<Voiture> rechercherParParc(int parcId) {
         List<Voiture> resultat = new ArrayList<>();
         try {
